@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sigenergy account",
+        "description": "Sign in with your mySigen account. Australian and New Zealand accounts must use the \"Australia & New Zealand\" region — it is a different server from Asia Pacific.",
+        "data": {
+          "username": "Email",
+          "password": "Password",
+          "region": "Region"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Sign-in failed. Check the password, and check the region — Australian and New Zealand accounts must use \"Australia & New Zealand\", not \"Asia Pacific\".",
+      "cannot_connect": "Could not reach the Sigenergy cloud."
+    },
+    "abort": {
+      "already_configured": "This station is already set up."
+    }
+  }
+}

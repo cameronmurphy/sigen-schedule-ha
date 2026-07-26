@@ -1,0 +1,12 @@
+{
+  "domain": "sigen_schedule",
+  "name": "Sigenergy Schedule",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/cammurphy/sigen-schedule-ha",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/cammurphy/sigen-schedule-ha/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
