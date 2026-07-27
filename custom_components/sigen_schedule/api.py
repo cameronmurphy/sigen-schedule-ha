@@ -86,7 +86,9 @@ class SigenClient:
 
     # ---------------------------------------------------------------- headers
 
-    def _headers(self, content_type: str, path: str) -> dict[str, str]:
+    def _headers(
+        self, content_type: str, path: str, *, authenticated: bool = True
+    ) -> dict[str, str]:
         origin = self._base.rstrip("/").replace("https://api-", "https://app-", 1)
         # The web app sends Date.now() * 1000 - microseconds, not milliseconds.
         ts = str(int(time.time() * 1000) * 1000)
@@ -109,7 +111,7 @@ class SigenClient:
             "sg-log-id": str(uuid.uuid5(uuid.NAMESPACE_URL, f"{path}{ts}")),
             "sg-session": self._session_id,
         }
-        if self._access_token:
+        if authenticated and self._access_token:
             headers["Authorization"] = f"Bearer {self._access_token}"
         return headers
 
@@ -144,7 +146,9 @@ class SigenClient:
         async with self._session.post(
             self._base + path,
             data=data,
-            headers=self._headers("application/x-www-form-urlencoded", path),
+            headers=self._headers(
+                "application/x-www-form-urlencoded", path, authenticated=False
+            ),
             auth=aiohttp.BasicAuth("sigen", "sigen"),
         ) as resp:
             body = await resp.json(content_type=None)
